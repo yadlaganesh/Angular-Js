@@ -1,0 +1,21 @@
+<html lang="en" ng-app="routeApp">
+<head>
+<title>Routing - using Location Service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+	<div ng-controller="MainController">
+		<input type="button" value="Load One" ng-click="LoadPage('one')"/>
+		<input type="button" value="Load Two" ng-click="LoadPage('two')"/>
+		<input type="button" value="Load Three" ng-click="LoadPage('three')"/>
+		
+		<div ng-view>
+			
+		</div>
+		
+	<div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/angular-route.js"></script>
+<script type="text/javascript" src="Scripts/route05.js"></script>
+</html>

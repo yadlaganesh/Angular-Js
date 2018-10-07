@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Dependency Demo</title>
+</head>
+<body>
+<h1>Dependency Demo</h1>
+</body>
+<script type="text/javascript">
+function Foo(object) {
+    this.object = object;
+}
+Foo.prototype.showDetails = function(data) {
+  this.object.display(data);
+
+}
+
+var greeter = { 
+	display : function(msg){
+	  alert(msg); 
+	}
+}
+
+var foo = new Foo(greeter);
+foo.showDetails("MIZE");
+</script>
+</html>

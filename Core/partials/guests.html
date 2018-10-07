@@ -1,0 +1,36 @@
+<div>	
+	<table border="1" cellpadding="10" >
+		<thead>
+			<tr>
+				<th colspan="4">Routing</th>
+			</tr>
+			<tr>
+				<th align="right">Sort by :</th>
+				<th>
+					<select ng-model="sortColumn">
+						<option value="guestId">Id</option>
+						<option value="guestName">Name</option>
+					</select>
+				</th>
+				<th colspan="2">
+					<input ng-model="sortOrder" name="order" type="radio"/>Ascending
+					<input ng-model="sortOrder" name="order" type="radio" value="reverse"/>Descending
+				</th>
+			</tr>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Contact Number</th>
+			<th></th>
+		</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="guest in guests |orderBy:sortColumn:sortOrder">
+				<td>{{guest.guestId}}</td>
+				<td>{{guest.guestName | uppercase}}</td>
+				<td>{{guest.contactNumber}}</td>
+				<td><a href="#/guestDetails/{{guests.indexOf(guest)}}">View Details</a></td>
+			</tr>
+		</tbody>
+	</table>
+</div>	

@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>Closure</title>
+<script type= "text/javascript">
+function sayHello(name) {
+  var text = 'Hello ' + name; // local variable
+  var sayAlert = function() { alert(text); }
+  return sayAlert;
+}
+
+function testSayHello() {
+	var test = sayHello("Karthik");
+	test();
+}
+function setGlobals() {
+  // Local variable that ends up within closure
+  var num = 2011;
+  // Store some references to functions as global variables
+  alertNumber = function() { alert(num); }
+  increaseNumber = function() { num++; }
+  setNumber = function(x) { num = x; }
+}
+</script>
+</head>
+<body>
+<input type="button" value="testSayHello()" onclick="testSayHello()" />
+<input type="button" value="setGlobals()" onclick="setGlobals()" />
+<input type="button" value="alertNumber()" onclick="alertNumber()" />
+<input type="button" value="increaseNumber()" onclick="increaseNumber()" />
+<input type="button" value="setNumber(5)" onclick="setNumber(5)" />
+</body>
+</html>

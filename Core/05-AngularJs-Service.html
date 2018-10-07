@@ -1,0 +1,43 @@
+<html ng-app="guestPhoneBookApp">
+<head>
+<title>Guest Phonebook</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>Phonebook Application</h1>
+<div ng-controller="GuestAjaxCntrl">
+<div><h2>{{error}}</h2></div>
+<table border="1" cellpadding="10">
+<thead>
+<tr>
+<th colspan="4">Fetching data from local JSON file using Ajax</th>
+</tr>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Contact Number</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="guest in guests">
+<td>{{guest.guestId}}</td>
+<td>{{guest.guestName}}</td>
+<td>{{guest.contactNumber}}</td>
+<td>{{guest.location}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br/>
+<br/>
+<div>
+<b>Note:</b> Program Works well with Mozilla firefox & Safari.<br/>
+To make it work with chrome browser, run chrome.exe with following command from run window(Win+R key)<br/> 
+<i>chrome.exe -allow-file-access-from-files -disable-web-security</i><br/>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/script.js"></script>
+</html>
+

@@ -1,0 +1,32 @@
+<div align="left">	
+<p>{{error}}</p>
+<table cellpadding="10">
+	<thead>
+		<tr>
+			<th align="left" colspan="3">{{guests[id].guestName}} Details</h2><hr/></th>
+		<tr>
+	</thead>
+	<tr>
+		<td rowspan="4"><img ng-src="{{guests[id].image}}" title="{{guests[id].guestName}}" alt="{{guests[id].guestName}}"/></td>
+		<td align="right"><b>Id : </b>
+		</td><td>{{guests[id].guestId}}</td>
+	</tr>
+	<tr>
+		<td align="right"><b>Name : </b></td>
+		<td>{{guests[id].guestName}}</td>
+	</tr>
+	<tr>
+		<td align="right"><b>Contact Number : </b></td>
+		<td>{{guests[id].contactNumber}}</td>
+	</tr>
+	<tr>
+		<td align="right"><b>Location : </b></td>
+		<td>{{guests[id].location}}</td>
+	</tr>
+	<tr>
+		<td colspan="3" align="center">
+			<a href="#/guestDetails">Home</a> | <a href="#/guestDetails/{{previous}}">Previous</a> | <a href="#/guestDetails/{{next}}">Next</a>
+		</td>
+	</tr>
+</table>
+</div>	

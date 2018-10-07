@@ -1,0 +1,152 @@
+<html>
+<head>
+<script type="text/javascript">
+/* Creating a function and invoke it */
+function Way01(){
+	console.log('Way01 function Invoked');
+};
+Way01();
+
+/* Creating anonymous function and invoke it */
+var Way02 = function(){
+	console.log('Way02 function Invoked');
+};
+Way02();
+
+/* Invoking the function by itself*/
+var Way03 = function(){
+	console.log('Way03 function Invoked');
+}();
+
+/* Anonymous Closures*/
+(function(){
+	var data = "Closing the variables inside the function from the rest of the world"
+	console.log('Way04 function Invoked');
+})();
+
+
+var evenNumbers=[2,4,6,8,10];
+var numbers=[1,2,3,4,5,6,7,8,9,10];
+
+/*Invoking the function directly*/
+var squareNumbersInArray = function(arr){
+	var size = arr.length;
+	for(counter = 0; counter < size; counter++) {
+		console.log("square of "+arr[counter]+" is "+(arr[counter]*arr[counter]));
+	};
+};
+console.log("Invoking squareNumbersInArray function directly")
+squareNumbersInArray(evenNumbers);
+
+
+/*Invoking the function by passing it as a argument*/
+var executeFunction = function(fn,arg){
+	console.log('Function started');
+	fn(arg);
+	console.log('Function completed');
+};
+console.log("Invoking squareNumbersInArray function by passing it as a argument")
+executeFunction(squareNumbersInArray,evenNumbers);
+
+/*Variable Scope*/
+var foo = function(){
+	globalVar = "Global Variable"; //variable declared without var keyword considered as Global Variable
+	var sampleVar = "Main Sample Variable";
+	/*inner function*/
+	var innerfunction = function(){
+		/*if below line is commented it will go to its parent function and take the value from there*/
+		var sampleVar = "Sample Variable in inner function";
+		console.log('Value in sampleVar : '+sampleVar);
+	}();
+}();
+
+/*Accessing global variable*/
+console.log('Value in globalVar : '+globalVar);
+
+/*Variable & function Hoisting*/
+var bazSampleVariable ="Baz Sample variable"; //wont be available in baz function since we have a local declaration
+baz(); // function will be hoisted at the top of the declaration key chain so that we can call it before function declaration.
+function baz(){
+	var innerfunction = function(){
+		//var bazSampleVariable;//variables will automatically declared at the top even though it is assigned at the last line of the program
+		console.log(bazSampleVariable);
+		var bazSampleVariable = "Main Sample Variable";
+	}();
+	console.log(bazSampleVariable);
+};
+
+/*
+As a best practice avoid creating variables without var keyword(global variables).
+call the function after function declaration. 
+*/
+
+/*Creating Module*/
+var module = (function(){
+	var moduleVariable = "Variable declared inside module"
+	return {
+		task1 : function(arg1,arg2){
+			alert("task1 function executed. arg1 = "+arg1+" arg2 = "+arg2);
+		},
+		task2 : function(){
+			var args  = "";
+			for(counter = 0; counter < arguments.length; counter++) {
+				args+="arguments["+counter+"] = "+arguments[counter]+"\n";
+			}
+			alert(args);
+		},
+		task3 : function(){
+			console.log("moduleVariable = "+moduleVariable);
+		},
+		task4 : function(){
+			return this;//returns object so that we can do method chaining
+		}
+	};
+})();
+
+/*JavaScript function acts as a constructor when we use it together with the new operator*/
+var Employee = function(){
+	this.employeeId = 0;
+	this.name = "";
+};
+Employee.prototype.printInformation = function(){
+		console.log("Id = "+this.employeeId);
+		console.log("name = "+this.name);
+}
+
+console.log("Invoking Employee instance through constructor");
+emp1 = new Employee();
+emp1.employeeId = 714709;
+emp1.name = "Karthik";
+emp1.printInformation();
+
+emp2 = new Employee();
+emp2.employeeId = 5085;
+emp2.name = "Anil Patil";
+emp2.printInformation();
+
+/*Creating objects*/
+var calculator = {
+	name : "Casio",
+	addNumbers : function(a,b){
+		return(
+			console.log(this),
+			console.log(arguments),
+			console.log("Addition of "+a+" and "+b+" is "+(a+b))
+		);
+	}
+}; 
+console.log("Working with calculator Object");
+console.log("Calculator Name : "+calculator.name);
+calculator.addNumbers(4,5);
+</script>
+<title>Working with JavaScript functions</title>
+</head>
+<body>
+<h1> Working with JavaScript functions - Open developer Tools[F12] to see results</h1>
+<script type="text/javascript">
+	/*Invoking methods from modules*/
+	module.task1(1,2);
+	module.task2(1,true,2.5,"A");
+</script>
+</body>
+</html>

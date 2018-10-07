@@ -1,0 +1,34 @@
+<html ng-app>
+<head>
+<title>AngularJS - MVC</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link href="css/Stylesheet.css" rel="stylesheet" />
+</head>
+<body>
+<div ng-controller="EmployeeController" class="mvc_angular" id="emp">
+<h2>{{employee.name}}</h2>
+<p>{{employee.department +', '+employee.companyName}}</p>
+</div>
+<div ng-controller="EmployeeController2" class="mvc_angular">
+<h2>{{employee2.name}}</h2>
+<p>{{employee2.department +', '+employee2.companyName}}</p>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+	var EmployeeController = function($scope){
+		$scope.employee = {
+			'name':'Ganesh',
+			'department':'Junier Developer',
+			'companyName':'M-IZE'
+		}; 
+	};
+	var EmployeeController2 = function($scope){
+		$scope.employee2 = { 
+			'name':'Rama Battena',
+			'department':'Junier Developer',
+			'companyName':'M-IZE'
+		};
+	};
+</script>
+</html>

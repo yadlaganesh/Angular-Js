@@ -1,0 +1,43 @@
+<html ng-app="myApp">
+<head>
+<title>injector Demo</title>
+</head>
+<body>
+<h1>$injector Demo</h1>
+<div ng-controller="MyController">
+<div>{{globalVariable}}</div>
+<div>{{scopeVariable}}</div>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/jquery.js"></script>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.factory('greeter', function() {
+	return {
+		display: function(msg) { alert(msg); }
+	}
+});
+/*
+var $injector = angular.injector(['myApp']);
+$injector.invoke(function(greeter){
+	greeter.display("IGATE");
+});
+*/
+
+app.controller('MyController',function($scope,greeter){
+		greeter.display("MIZE");
+});
+
+/*
+app.controller('ServiceController',function($scope,$injector){
+	$injector.invoke(function(greeter){
+		greeter.display("IGATE");
+	});
+});*/
+
+</script>
+</html>
+
+
+

@@ -1,0 +1,26 @@
+<html ng-app="myApp">
+<head>
+<title>injector Demo</title>
+</head>
+<body>
+<h1>Angular Using Injector</h1>
+<div ng-controller="MyController">
+</div>
+</body>
+<script type="text/javascript" src="Scripts/jquery.js"></script>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('myApp', []);
+app.controller('MyController',function($scope,$rootScope){
+	if($rootScope.globalVariable != undefined)
+	{	
+		alert($rootScope.globalVariable);
+	}
+	
+	if($scope.scopeVariable != undefined)
+	{	
+		alert($scope.scopeVariable);
+	}
+});
+</script>
+</html>

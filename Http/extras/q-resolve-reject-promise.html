@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>AngularJS - MVC</title>
+</head>
+<body>
+<h1>AngularJS - MVC</h1>
+<div ng-app="serviceApp" ng-controller="ServiceCntrl">
+    <div><input type="button" value="$q Service Test" ng-click="test()"/></div>
+</div>
+
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script>
+var app = angular.module("serviceApp",[]);
+app.controller('ServiceCntrl',function($scope,$q){
+	$scope.test = function(){
+		var deferred = $q.defer();
+		var promise = deferred.promise;
+		promise.then(function(response){
+			alert('Success :'+response.message);
+		},function(response){
+				alert('Error :'+response.message);
+		});
+		/*uncomment to resolve the promise*/
+		deferred.resolve({message:'Promise will gets fullfilled'});
+		/*uncomment to reject the promise*/
+		//deferred.reject({message:'Promise gets rejected'});
+	}
+});
+</script>
+
+</html>
+	

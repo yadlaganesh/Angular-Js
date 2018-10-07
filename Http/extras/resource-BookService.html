@@ -1,0 +1,37 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $resource service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>Service - $resource service</h1>
+<div ng-controller="AppController">
+<button ng-click="getBook(1)">get book</button>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/angular-resource.js"></script>
+<script type="text/javascript">
+var app = angular.module('serviceApp',['ngResource']);
+app.factory('BookService',function($resource){
+	return $resource('https://api.mongolab.com/api/1/databases/igateangulardb/collections/Books?apiKey=Y6KaLZK8I2pEA-zgfk8oGNP6v8IVOLFm/:_id',{_id:'@_id'});
+});
+app.controller('AppController',function($scope,BookService){
+	// Get all books 
+	var books = BookService.query(); 
+	
+	/*var book = books.$promise.then(function(response){
+		var book = response[2];
+		console.log(book);
+	},function(response){
+		console.log(response);
+	});*/
+	$scope.getBook=function(id){
+		var book = books.get({_id:id},function(){},function(){});
+		console.log(book);
+	}
+	
+	
+});
+</script>
+</html>

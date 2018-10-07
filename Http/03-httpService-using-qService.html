@@ -1,0 +1,42 @@
+<html ng-app="serviceApp">
+<head>
+<title>httpService-using-qService</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>httpService Using qService</h1>
+<div ng-controller="ServiceController">
+<table border="1" cellpadding="10">
+<thead>
+<tr>
+<th colspan="3">Fetching data from local JSON file($http using $q) </th>
+</tr>
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Contact Number</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="guest in guests">
+<td>{{guest.guestId}}</td>
+<td>{{guest.guestName}}</td>
+<td>{{guest.contactNumber}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/qService.js"></script>
+<script type="text/javascript">
+	app.controller('ServiceController',function($scope,guestService){
+		var promise = guestService.retrieveGuests();
+		promise.then(function(data){
+			$scope.guests = data;
+		},function(err){
+			console.log(err);
+		});
+	})
+</script>
+</html>

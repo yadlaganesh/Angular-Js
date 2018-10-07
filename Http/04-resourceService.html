@@ -1,0 +1,116 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $resource service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>Service - $resource service</h1>
+<div ng-controller="AppController">
+     <button ng-click="showCreate()">Add Employee</button>
+  <br /><br />
+    <table border="1" cellpadding="10" ng-show="employees.length">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Contact Number
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-id="{{employee._id}}" ng-repeat="employee in employees">
+                <td>
+                    {{employee._id}}
+                </td>
+                <td>
+                    {{employee.Name}}
+                </td>
+                 <td>
+                    {{employee.ContactNumber}}
+                </td>
+                <td>
+                    <button ng-click="editEmployee(employee)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+      <div ng-show="isEditVisible">
+        <hr />
+         <h2>Edit Employee</h2>
+        <form>
+            <label>Id:</label>
+            <input type="text" ng-disabled="true" ng-model="editableEmployee._id" />
+            <label>Name:</label>
+            <input type="text" ng-model="editableEmployee.Name"/>
+            <label>Contact Number:</label>
+            <input type="text" ng-model="editableEmployee.ContactNumber"/>
+
+            <input type="submit" value="Update" ng-click="updateEmployee(editableEmployee)" />
+        </form>
+    </div>
+      <div ng-show="isCreateVisible">
+        <hr />
+          <h2>Add Employee</h2>
+        <form>
+            <label>Id:</label>
+            <input type="text" ng-model="newEmployee._id" />
+            <label>Name:</label>
+            <input type="text" ng-model="newEmployee.Name" required />
+            <label>Contact Number:</label>
+            <input type="text" ng-model="newEmployee.ContactNumber" required />
+
+            <input type="submit" value="Save" ng-click="saveEmployee(newEmployee)" />
+        </form>
+    </div>
+ </div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/angular-resource.js"></script>
+<script type="text/javascript" src="Scripts/resourceService.js"></script>
+<script type="text/javascript">
+app.controller('AppController', function ($scope, EmployeeService) {
+    $scope.employees = EmployeeService.query();
+    
+	var createEmployee = function (newEmployee) {
+        newEmployee.$save();
+        $scope.employees.push(newEmployee);
+    };
+
+	
+    $scope.showEdit = function () {
+        $scope.isEditVisible = true;
+        $scope.isCreateVisible = false;
+    };
+
+    $scope.showCreate = function () {
+        $scope.isCreateVisible = true;
+        $scope.isEditVisible = false;
+        $scope.newEmployee = new EmployeeService();
+    };
+
+    $scope.saveEmployee = function (employee) {
+        $scope.isCreateVisible = false;
+       createEmployee(employee);
+    };
+
+    $scope.updateEmployee = function (employee) {
+        $scope.isEditVisible = false;
+        employee.$update();
+    };
+
+    $scope.editEmployee = function (employee) {
+        $scope.isEditVisible = true;
+        $scope.isCreateVisible = false;
+        $scope.editableEmployee = employee;
+    };
+    $scope.isEditVisible = false;
+})
+</script>
+</html>

@@ -1,0 +1,25 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $locale service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+	<h1>Service - $locale service</h1>
+	<div  ng-controller="ServiceController">
+		<h2>{{ todayDate | date:dateFormat }}</h2>
+	</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/angular-locale_ta-in.js"></script> 
+ <!--<script type="text/javascript" src="Scripts/angular-locale_kn-in.js"></script>
+<script type="text/javascript" src="Scripts/angular-locale_hi-in.js"></script>-->
+
+<script type="text/javascript">
+var app = angular.module('serviceApp',[])
+app.controller("ServiceController",function($scope,$locale){
+	$scope.todayDate = new Date();
+	$scope.dateFormat = 'fullDate';
+	//$scope.dateFormat = $locale.DATETIME_FORMATS.fullDate;
+})
+</script>
+</html>

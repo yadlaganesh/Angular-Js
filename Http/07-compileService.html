@@ -1,0 +1,27 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $compile service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+	<h1>Service - $compile service</h1>
+	<div  ng-controller="ServiceController">
+		<div id="target"></div>
+		<br/>
+		Markup : <input type="text" ng-model="markup"/><br/> <!-- <h3>{{1+1}}</h3>  or <h3>{{name}}</h3>-->
+		<input type="button" ng-click="appendToDivElement(markup)" value="Append"/>
+		
+	</div>
+	
+</body>
+<script type="text/javascript" src="Scripts/jquery.js"></script> 
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('serviceApp',[])
+app.controller("ServiceController",function($scope,$compile){
+	$scope.appendToDivElement= function(markup){
+		return angular.element('#target').append($compile(markup)($scope));
+	}
+})
+</script>
+</html>

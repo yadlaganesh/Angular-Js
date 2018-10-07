@@ -1,0 +1,37 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $timeout & $interval service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+	<h1>Service - $timeout &amp; $interval service</h1>
+	<div  ng-controller="ServiceController">
+		<h2>Counter : {{ counter }}</h2>
+		<h2>Display Company Name in 5 sec(s): {{ companyName }}</h2>
+		<input type="button" value="Cancel timeout and interval service" ng-click="cancelProcess()"/>
+	</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('serviceApp',[])
+app.controller("ServiceController",function($scope,$timeout,$interval){
+
+	$scope.counter = 0;
+	
+	var timoutPromise = $timeout(function(){
+		$scope.companyName = "MIZE";
+	},5000) 
+	
+	var intervalPromise=$interval(incrementCounter, 1000,5);
+	
+	$scope.cancelProcess = function(){
+		$timeout.cancel(timoutPromise)
+		$interval.cancel(intervalPromise)
+	}
+	
+	function incrementCounter(){
+		$scope.counter++;
+	}
+})
+</script>
+</html>

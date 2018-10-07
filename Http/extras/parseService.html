@@ -1,0 +1,26 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $parse service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+	<h1>Service - $parse service</h1>
+	<div  ng-controller="ServiceController">
+		<input ng-model="expr" type="text" placeholder="Enter an expression" /> <!-- firstName | uppercase -->
+		<h2>{{ parsedValue }}</h2>
+	</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('serviceApp',[])
+app.controller("ServiceController",function($scope,$parse){
+	$scope.firstName = "Karthik";
+	$scope.$watch('expr', function(newVal, oldVal, scope) {
+      if (newVal != oldVal) {
+         var parseFn = $parse(newVal);
+         $scope.parsedValue = parseFn(scope);
+      }
+    });
+})
+</script>
+</html>

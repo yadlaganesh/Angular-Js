@@ -1,0 +1,32 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $cookieStore service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+	<h1>Service - $cookieStore service</h1><!-- working only in FF. to set Expiration we need to use 3rd party service -->
+	<div  ng-controller="ServiceController">
+		<input type="button" value="Add Cookie" ng-click="addCookie(employee)"/>
+		<input type="button" value="Read Cookie" ng-click="readCookie()"/>
+		<input type="button" value="Delete Cookie" ng-click="removeCookie()"/>
+	</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/angular-cookies.js"></script>
+<script type="text/javascript">
+var app = angular.module('serviceApp',['ngCookies']);
+app.controller("ServiceController",function($scope,$cookieStore){
+	$scope.employee ={id:101,name:"karthik"};
+	$scope.addCookie = function(employee){
+		$cookieStore.put('employee',employee);
+	}
+	$scope.readCookie = function(){
+		console.log($cookieStore.get('employee'));
+	}
+	$scope.removeCookie = function(){
+		$cookieStore.remove('employee');
+	}
+	
+})
+</script>
+</html>

@@ -1,0 +1,38 @@
+<html ng-app="serviceApp">
+<head>
+<title>Service - $cacheFactory service</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+	<h1>Service - $cacheFactory service</h1>
+	<div ng-controller="ServiceController">
+		<div>
+			Key : <input type="text" ng-model="key"/><br/>
+			Value : <input type="text" ng-model="value"/><br/>
+			<input type="button" value="Add to cache" ng-click="addToCache(key,value)"/>
+		</div>
+		<div>
+			Key : <input type="text" ng-model="keyToRead"/><br/>
+			<h3>Value from cache : {{readFromCache(keyToRead)}}</h3>
+			<h3>Cache Status : {{getCacheStatus()}}</h3>
+		</div>
+	
+	</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/cachefactoryService.js"></script>
+<script type="text/javascript">
+	
+	app.controller('ServiceController',function($scope,customCache){
+		$scope.addToCache = function(key,value){
+			customCache.put(key,value);
+		};
+		$scope.readFromCache = function(key){
+			return customCache.get(key);
+		};
+		$scope.getCacheStatus = function(){
+			return customCache.info();
+		};
+	})
+</script>
+</html>

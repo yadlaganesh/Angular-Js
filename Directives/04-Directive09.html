@@ -1,0 +1,21 @@
+<html ng-app="directivesApp">
+<head>
+<title>Custom Directives</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>Custom Directives - templateUrl &amp; text/ng-template mime type </h1>
+<hr/>
+<div>
+<script type="text/ng-template" id="test.html">
+<h1>Test.html  inculded as ng-template</h1>
+</script>
+	<div insert-template="test.html">
+		
+	</div>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/directives.js"></script>
+
+</html>

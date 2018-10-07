@@ -1,0 +1,43 @@
+<html ng-app="myApp">
+<head>
+<title>Custom Directives</title>
+</head>
+<body>
+<h1>Custom Directives</h1>
+<hr/>
+<div ng-controller="MyCntrl">  
+  <div my-directive var="{{company}}"></div>
+</div> 
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script>
+var app = angular.module("myApp",[]);
+app.directive("myDirective", function(){
+    return {
+	    restrict:"A",
+		scope: {
+			company:"@var"
+		},
+		 template: '{{company}}'  
+    }
+});
+app.controller("MyCntrl",function($scope){
+		$scope.company = "IGATE";
+});
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

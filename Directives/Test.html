@@ -1,0 +1,32 @@
+<html ng-app="directivesApp">
+<head>
+<title>Custom Directives</title>
+</head>
+<body>
+<h1>Custom Directives</h1>
+<hr/>
+<div ng-controller="MyCntrl">
+	<input type="text" kr-model/>
+	<h1>{{companyName}}</h1>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('directivesApp',[]);
+
+app.directive('krModel',function(){
+	return{
+		link:function(scope,element,attrs){
+			
+			scope.$watch('companyName', function(newVal, oldVal) {
+				console.log(newVal, oldVal);
+			});
+		}
+	}
+});
+
+app.controller('MyCntrl',function($scope){
+		$scope.companyName="Not set";
+});
+</script>
+</html>

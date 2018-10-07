@@ -1,0 +1,62 @@
+<html ng-app="eventApp">
+<head>
+<title>AngularJS - Event Directives</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>AngularJS - Event Directives</h1>
+<div ng-controller="EventController">
+	<h3>ngClick</h3>
+	<hr/>
+	<input type="button" ng-click="IncrementCounter()" value="Click to increment the counter"/><br/>
+	<div>
+		<span>Counter : {{counter}}</span>
+	</div>
+	<h3>ngDblclick</h3>
+	<hr/>
+	<input type="button" ng-dblclick="IncrementCounter()" value="Double click to increment the counter"/><br/>
+	<div>
+		<span>Counter : {{counter}}</span>
+	</div>
+	<h3>ngMouseup</h3>
+	<hr/>
+	<input type="button" ng-mouseup="IncrementCounter()" value="Press and release mouse left button to increment the counter"/><br/>
+	<div>
+		<span>Counter : {{counter}}</span>
+	</div>
+	<h3>ngMousedown</h3>
+	<hr/>
+	<input type="button" ng-mousedown="IncrementCounter()" value="Press mouse left button to increment the counter"/><br/>
+	<div>
+		<span>Counter : {{counter}}</span>
+	</div>
+	<h3>ngMousemove</h3>
+	<hr/>
+	<input type="button" ng-mousemove="IncrementCounter()" value="Increment the counter when mouse pointer moves on the button"/><br/>
+	<div>
+		<span>Counter : {{counter}}</span>	
+	</div>
+	<h3>ngMouseover</h3>
+	<hr/>
+	<input type="button" ng-mouseover="IncrementCounter()" value="Increment the counter when mouse pointer moves over the button"/><br/>
+	<div>
+		<span>Counter : {{counter}}</span>
+	</div>
+	<h3>ngMouseenter &amp; ngMouseLeave</h3>
+	<hr/>
+	<input type="button" ng-mouseenter="ChangeCounter(true)" ng-mouseleave="ChangeCounter(false)" value="Increment the counter while mouse enters and decrement when mouse leaves"/><br/>
+	<div>
+		<span>Counter : {{counter}}</span>
+	</div>
+	<h3>ngChange</h3>
+	<hr/>
+	<div>
+	   <input type="checkbox" ng-change="ChangeStatus(status)" ng-model="status" />
+		<input type="button" value="{{statusText}}"/><br/>
+	</div>
+	
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/script.js"></script>
+</html>

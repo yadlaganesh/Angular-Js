@@ -1,0 +1,30 @@
+<html ng-app="directivesApp">
+<head>
+<title>Custom Directives</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>Custom Directives</h1>
+<hr/>
+<div>
+	<custom-directive></custom-directive>
+	<custom-directive></custom-directive>
+	<custom-directive></custom-directive>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+var app = angular.module('directivesApp',[]);
+app.directive('customDirective',function($compile){
+	return {
+		restrict:'EA',
+		replace:true,
+		scope:{},
+		link:function(scope,element,attrs,controller){
+			var markup = "<div><input type='text' ng-model='sampleData'/><br/><span>Text Entered : {{sampleData}}</span></div>";
+			angular.element(element).replaceWith($compile(markup)(scope));
+		}
+	}
+});
+</script>
+</html>

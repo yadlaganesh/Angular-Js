@@ -1,0 +1,27 @@
+<html ng-app="directivesApp">
+<head>
+<title>Custom Directives</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>Custom Directives - Restricting Directives(E-element,A-Attribute,C-class,M-comments)</h1>
+<hr/>
+<div>
+	<helloworldelement></helloworldelement> 
+	<hr/>
+	<div data-helloworldattr></div>
+	<hr/>
+	<div class="helloworldclass"></div>
+	<hr/>
+	<!-- directive: helloworldcomment -->
+	<hr/>
+	<div class="helloworld"></div>
+	<hr/>
+	<div helloworld></div>
+	<!-- <helloworld></helloworld wont' work. It is valid only on class and  attributes-->
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/directives.js"></script>
+
+</html>

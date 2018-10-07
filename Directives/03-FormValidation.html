@@ -1,0 +1,77 @@
+<html ng-app="formApp">
+<head>
+<title>Form Validation</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<style type="text/css">
+	.error{color:red;font-weight:bold};
+</style>
+</head>
+<body>
+	<div ng-controller="FormController">
+		<!-- <form name="frm" ng-submit="submitForm()" action="#"> -->
+		<form name="frm" ng-submit="submitForm()">
+			<table width="100%" height="100%">
+				<tr>
+					<td align="center" valign="middle">
+						<table cellpadding="10" width="50%">
+							<thead>
+								<tr>
+									<th colspan="3">Form Validation</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td align="right" width="20%">Id :</td>
+									<td width="30%"><input name="txtId" type="text" ng-model="person.id" ng-minlength="5" ng-maxlength="8" ng-required="true"/></td>
+									<td width="50%">
+										 <span class="error" ng-show="frm.txtId.$dirty && frm.txtId.$error.required">Id required</span>
+										 <span class="error" ng-show="frm.txtId.$dirty && frm.txtId.$error.minlength">Minimum 5 digits required</span>
+										 <span class="error" ng-show="frm.txtId.$dirty && frm.txtId.$error.maxlength">Maximum is 8 digits</span>
+										 
+									</td>
+								</tr>
+								<tr>
+									<td align="right">Name :</td>
+									<td><input name="txtName" type="text" ng-pattern="/^[a-zA-Z]+$/i" ng-model="person.name" ng-required="true"/></td>
+									<td>
+										<span class="error" ng-show="frm.txtName.$dirty && frm.txtName.$error.required">Name required</span>
+										<span class="error" ng-show="frm.txtName.$dirty && frm.txtName.$error.pattern">Only alphabets allowed</span>
+									</td>
+								</tr>
+								<tr>
+									<td align="right">Salary :</td>
+									<td><input name="txtSalary" type="text" ng-pattern="/^\d{4,6}$/" ng-model="person.salary" ng-required="true"/></td>
+									<td>
+										<span class="error" ng-show="frm.txtSalary.$dirty && frm.txtSalary.$error.required">Salary required</span>
+										<span class="error" ng-show="frm.txtSalary.$dirty && frm.txtSalary.$error.pattern">Invalid salary</span>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="3" align="center">
+										<input type="submit" ng-disabled="frm.$invalid" value="Submit"/>
+										<input type="reset" value="Reset" ng-click="frm.$setPristine()"/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript">
+	angular.module('formApp', [])
+	.controller('FormController',function($scope){
+		$scope.person = {'id':0, 'name':'','salary':0};
+		var results = "Data Entered\n";
+		$scope.submitForm = function(){
+			results+="Id : "+$scope.person.id+"\n";
+			results+="Name : "+$scope.person.name+"\n";
+			results+="Salary : "+$scope.person.salary;
+			alert(results);
+		};
+	});
+</script>
+</html>

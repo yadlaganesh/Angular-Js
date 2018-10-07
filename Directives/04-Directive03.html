@@ -1,0 +1,19 @@
+<html ng-app="directivesApp">
+<head>
+<title>Custom Directives</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body>
+<h1>Custom Directives - Calling Controller Behavior &amp; usage of $apply</h1>
+<hr/>
+<div ng-controller="AppController">
+<input type="button" showalert="sayHi()" value="Call Controller Behavior 'sayHi' from Directive"/>
+<input type="button" showalert="sayBye()" value="Call Controller Behavior 'sayBye' from Directive"/>
+<input type="button" change-value value="Update model variable"/>
+<h1>Model Variable : {{modelVariable}}</h1>
+</div>
+
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/directives.js"></script>
+</html>

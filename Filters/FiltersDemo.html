@@ -1,0 +1,52 @@
+<html ng-app="filterApp">
+<head>
+<title>Filters</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+</head>
+<body> 
+<h1>Filters Demo</h1>
+<div ng-controller="FilterController">
+	<table border="1" cellpadding="10">
+		<thead>
+		<tr>
+			<th colspan="3">Filtering Demo</th>
+		</tr>
+		<tr>
+			<th align="right">Sort by :</th>
+			<th>
+				<select ng-model="sortColumn">
+					<option value="+guestId">Id</option>
+					<option value="+guestName">Name</option>
+				</select>
+			</th>
+			<th>
+				<input ng-model="sortOrder" name="order" type="radio"/>Ascending
+				<input ng-model="sortOrder" name="order" type="radio" value="reverse"/>Descending
+			</th>
+		</tr>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Contact Number</th>
+		</tr>
+		
+		</thead>
+		<tbody>
+			<tr ng-repeat="guest in guests |orderBy:sortColumn:sortOrder">
+				<td>{{guest.guestId }}</td>
+				<td>{{guest.guestName| uppercase}}</td>
+				<td>{{guest.contactNumber |concatNationalCode }}</td> <!-- Applying Custom Filter -->
+			</tr>
+		</tbody>
+	</table>
+	<hr/>
+	<div>
+		<span><b>Printing Data as JSON : </b></span>
+		<span>{{guests|json}}</span>
+	</div>
+	<hr/>
+</div>
+</body>
+<script type="text/javascript" src="Scripts/angular.js"></script>
+<script type="text/javascript" src="Scripts/filters.js"></script>
+</html>
